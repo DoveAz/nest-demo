@@ -19,6 +19,6 @@ export class CatsService {
   }
 
   async updateById(id: string, updateCatDto: UpdateCatDto): Promise<Cat> {
-    return this.catModel.findByIdAndUpdate(id, updateCatDto)
+    return this.catModel.findByIdAndUpdate(id, updateCatDto, { new: true })
   }
 }
