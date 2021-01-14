@@ -3,11 +3,18 @@ import { CatsService } from './cats.service'
 import { CreateCatDto } from './dto/create-cat.dto'
 import { UpdateCatDto } from './dto/update-cat.dto'
 import { Cat } from './schemas/cat.schema'
+import { ApiExtension, ApiHeader, ApiOperation, ApiParam, ApiProperty, ApiTags } from '@nestjs/swagger'
 
+@ApiTags('小猫咪')
 @Controller('cats')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
+  @ApiExtension('x-author', 'DoveAz')
+  @ApiOperation({
+    summary: '哈哈',
+    description: '你好啊',
+  })
   @Post()
   async create(@Body() createCatDto: CreateCatDto) {
     await this.catsService.create(createCatDto)
